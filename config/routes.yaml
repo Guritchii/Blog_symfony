@@ -1,9 +1,0 @@
-# config/routes.yaml
-
-app_main:
-  path: /main
-  controller: App\Controller\MainController::test
-
-app_form:
-  path: /form
-  controller: App\Controller\FormController::new

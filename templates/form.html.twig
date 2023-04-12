@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Blog Symfony</title>
-</head>
-<body>
-{% include 'header.html.twig' %}
-<main>
-    {% extends 'base.html.twig' %}
-
-    {% block body %}
-        <h1>Create a new article</h1>
-
-        {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.text) }}
-        <button type="submit">Save</button>
-        {{ form_end(form) }}
-    {% endblock %}
-</main>
-{% include 'footer.html.twig' %}
-</body>
-</html>
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main>
+        <div>
+            <h1>Create a new article</h1>
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.text) }}
+            <button type="submit">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+    </main>
+{% endblock %}

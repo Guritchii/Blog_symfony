@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main>
+        <div>
+            <h2>{{ articleEntity.name }}</h2>
+            <p>{{ articleEntity.text }}</p>
+        </div>
+        <a href="{{ path('app_article_edit', {'id': articleEntity.id}) }}">Editer</a>
+        <a href="{{ path('app_article_delete', {'id': articleEntity.id}) }}">Supprimer</a>
+    </main>
+{% endblock %}

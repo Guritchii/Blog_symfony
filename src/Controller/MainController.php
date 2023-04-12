@@ -1,5 +1,5 @@
 <?php
-// src/Controller/LuckyController.php
+
 namespace App\Controller;
 
 use App\Entity\Article;
@@ -13,17 +13,26 @@ class MainController extends AbstractController
 {
     public function __construct(
         private ArticleRepository $articleRepository,
-        private ArticleCrudController $articleCrudController
     ){}
 
+    #[Route('/', name: 'main')]
     public function test(ManagerRegistry $registry): Response
     {
-        //A FINIR !!!!
-        $articles = $this->articleCrudController->index($this->articleRepository);
-        //$articles = $this->articleRepository->findAll();
-
+        $articles = $this->articleRepository->findAll();
         return $this->render('main.html.twig', [
             'articles' => $articles
+        ]);
+    }
+
+    #[Route('/article_item/{id}', name: 'article_item')]
+    public function articleItem($id)
+    {
+        //dump($id); + die($id); = dd($id);
+
+        $articleEntity = $this->articleRepository->find($id);
+
+        return $this->render('view_article.html.twig', [
+            'articleEntity' => $articleEntity
         ]);
     }
 

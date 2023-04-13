@@ -19,7 +19,7 @@ class MainController extends AbstractController
     public function test(ManagerRegistry $registry): Response
     {
         $articles = $this->articleRepository->findAll();
-        return $this->render('main.html.twig', [
+        return $this->render('pages/main.html.twig', [
             'articles' => $articles
         ]);
     }
@@ -31,7 +31,7 @@ class MainController extends AbstractController
 
         $articleEntity = $this->articleRepository->find($id);
 
-        return $this->render('view_article.html.twig', [
+        return $this->render('pages/view_article.html.twig', [
             'articleEntity' => $articleEntity
         ]);
     }
@@ -40,6 +40,6 @@ class MainController extends AbstractController
     public function form(): Response
     {
         // Redirection vers la page form
-        return $this->render('form.html.twig');
+        return $this->render('pages/form.html.twig');
     }
 }

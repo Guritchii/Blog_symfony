@@ -17,6 +17,7 @@ class FormController extends AbstractController
     public function new(Request $request, ArticleRepository $articleRepository): Response
     {
         $article = new Article();
+
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -26,38 +27,37 @@ class FormController extends AbstractController
             return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('form.html.twig', [
-            'article' => $article,
+        return $this->renderForm('pages/form.html.twig', [
             'form' => $form,
         ]);
     }
 
-    #[Route('/articles/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    #[Route('form/edit/{id}', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $articleRepository->save($article);
+            $articleRepository->save($article,true);
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('article/edit.html.twig', [
+        return $this->renderForm('pages/form.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
     }
 
-    #[Route('/articles/{id}', name: 'app_article_delete', methods: ['POST'])]
+    #[Route('/articles/delete/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
-            $articleRepository->delete($article);
+            $articleRepository->remove($article,true);
         }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
     }
 
 }

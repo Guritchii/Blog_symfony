@@ -2,13 +2,17 @@
 {% block body %}
     <main>
         <div>
-            <h2>{{ articleEntity.name }}</h2>
-            <p>{{ articleEntity.text }}</p>
+            <div>
+                <h2>{{ articleEntity.name }}</h2>
+                <p>{{ articleEntity.text }}</p>
+            </div>
+            <div id="div_view_article_button">
+                <a href="{{ path('app_article_edit', {'id': articleEntity.id}) }}"><button type="submit">Editer</button></a>
+                <form method="POST" action="{{ path('app_article_delete', {'id': articleEntity.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?')">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ articleEntity.id) }}">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </div>
         </div>
-        <a href="{{ path('app_article_edit', {'id': articleEntity.id}) }}"><button>Editer</button></a>
-        <form method="POST" action="{{ path('app_article_delete', {'id': articleEntity.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?')">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ articleEntity.id) }}">
-            <button type="submit">Supprimer</button>
-        </form>
     </main>
 {% endblock %}

@@ -19,6 +19,9 @@
             "./src/Repository/.gitignore"
         ]
     },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.4.3"
+    },
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.2",
         "recipe": {
@@ -228,12 +231,6 @@
     },
     "symfony/web-profiler-bundle": {
         "version": "v6.1.11"
-    },
-    "symfony/webapp-pack": {
-        "version": "1.1",
-        "recipe": {
-            "version": "1.0"
-        }
     },
     "symfony/webpack-encore-bundle": {
         "version": "1.16",
